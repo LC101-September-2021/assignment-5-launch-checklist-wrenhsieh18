@@ -1,11 +1,12 @@
 // Write your JavaScript code here!
 window.addEventListener("load", function() {
     const form = document.querySelector("form");
+    const statusList = document.getElementById("faultyItems");
+    statusList.style.visibility = "hidden";
 
 
     
     form.addEventListener("submit", (event) => {
-        const statusList = document.getElementById("faultyItems");
         statusList.style.visibility = "hidden";
         const pilotName = document.querySelector("input[name = pilotName]").value;
         const copilotName = document.querySelector("input[name = copilotName]").value;
