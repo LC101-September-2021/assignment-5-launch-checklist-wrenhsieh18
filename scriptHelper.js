@@ -38,20 +38,19 @@ function validateInput(testInput) {
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-    const pilotNameInput = document.querySelector(`input[name = ${pilot}]`).value;
-    const copilotNameInput = document.querySelector(`input[name = ${copilot}]`).value;
+    //const pilotNameInput = document.querySelector(`input[name = ${pilot}]`);
+    //const copilotNameInput = document.querySelector(`input[name = ${copilot}]`);
     //const fuelLevelInput = document.querySelector(`input[name = ${fuelLevel}]`);
     //const cargoLevelInput = document.querySelector(`input[name = ${cargoLevel}]`);
 
     //const allUserInputs = [pilotNameInput, copilotNameInput, fuelLevelInput, cargoLevelInput];
-    const allUserInputs = [pilotNameInput, copilotNameInput, fuelLevel, cargoLevel];
+    const allUserInputs = [pilot, copilot, fuelLevel, cargoLevel];
     const allInputsVerification = allUserInputs.map( (a) => validateInput(a) );
     const verificationCode = ["Not a Number", "Not a Number", "Is a Number", "Is a Number"];
     let errorMsg = "";
 
     const statusList = list;
     const launchStatus = document.getElementById("launchStatus");
-    statusList.style.visibility = "hidden";
     
     for (let verification of allInputsVerification) {
         if (verification === 'Empty') {
@@ -68,9 +67,8 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     }
 
     if (errorMsg === "") {
-        document.getElementById("pilotStatus").innerHTML = `Pilot ${pilotNameInput} is ready for launch`;
-        document.getElementById("copilotStatus").innerHTML = `Co-pilot ${copilotNameInput} is ready for launch`;
-        //console.log(Number(fuelLevel));
+        document.getElementById("pilotStatus").innerHTML = `Pilot ${pilot} is ready for launch`;
+        document.getElementById("copilotStatus").innerHTML = `Co-pilot ${copilot} is ready for launch`;
         if (Number(fuelLevel) < 10000 || Number(cargoLevel) > 10000) {
             launchStatus.innerHTML = `Shuttle Not Ready for Launch`;
             launchStatus.style.color = "red";

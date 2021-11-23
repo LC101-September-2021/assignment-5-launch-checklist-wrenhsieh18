@@ -6,10 +6,12 @@ window.addEventListener("load", function() {
     
     form.addEventListener("submit", (event) => {
         const statusList = document.getElementById("faultyItems");
+        statusList.style.visibility = "hidden";
+        const pilotName = document.querySelector("input[name = pilotName]").value;
+        const copilotName = document.querySelector("input[name = copilotName]").value;
         const fuelLevel = Number(document.querySelector("input[name = fuelLevel]").value);
         const cargoLevel = Number(document.querySelector("input[name = cargoMass]").value);
-        formSubmission(document, statusList, "pilotName", "copilotName", fuelLevel, cargoLevel);
-        console.log(statusList.style.visibility);
+        formSubmission(document, statusList, pilotName, copilotName, fuelLevel, cargoLevel);
         event.preventDefault();
     })
 
