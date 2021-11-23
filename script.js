@@ -8,7 +8,8 @@ window.addEventListener("load", function() {
         const statusList = document.getElementById("faultyItems");
         const fuelLevel = Number(document.querySelector("input[name = fuelLevel]").value);
         const cargoLevel = Number(document.querySelector("input[name = cargoMass]").value);
-        formSubmission(document, statusList, "pilotName", "copilotName", fuelLevel, cargoLevel)
+        formSubmission(document, statusList, "pilotName", "copilotName", fuelLevel, cargoLevel);
+        console.log(statusList.style.visibility);
         event.preventDefault();
     })
 
