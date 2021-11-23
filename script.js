@@ -1,12 +1,14 @@
 // Write your JavaScript code here!
 window.addEventListener("load", function() {
     const form = document.querySelector("form");
-    const statusList = document.getElementById("faultyItems");
-    const fuelLevel = document.querySelector("input[name = fuelLevel]").value;
-    const cargoLevel = document.querySelector("input[name = cargoMass]").value;
 
+
+    
     form.addEventListener("submit", (event) => {
-        formSubmission(document, statusList, "pilotName", "copilotName", fuelLevel, cargoMass)
+        const statusList = document.getElementById("faultyItems");
+        const fuelLevel = Number(document.querySelector("input[name = fuelLevel]").value);
+        const cargoLevel = Number(document.querySelector("input[name = cargoMass]").value);
+        formSubmission(document, statusList, "pilotName", "copilotName", fuelLevel, cargoLevel)
         event.preventDefault();
     })
 

@@ -38,20 +38,20 @@ function validateInput(testInput) {
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-    const pilotNameInput = document.querySelector(`input[name = ${pilot}]`);
-    const copilotNameInput = document.querySelector(`input[name = ${copilot}]`);
+    const pilotNameInput = document.querySelector(`input[name = ${pilot}]`).value;
+    const copilotNameInput = document.querySelector(`input[name = ${copilot}]`).value;
     //const fuelLevelInput = document.querySelector(`input[name = ${fuelLevel}]`);
     //const cargoLevelInput = document.querySelector(`input[name = ${cargoLevel}]`);
 
     //const allUserInputs = [pilotNameInput, copilotNameInput, fuelLevelInput, cargoLevelInput];
     const allUserInputs = [pilotNameInput, copilotNameInput, fuelLevel, cargoLevel];
-    const allInputsVerification = allUserInputs.map( (a) => validateInput(a.value) );
+    const allInputsVerification = allUserInputs.map( (a) => validateInput(a) );
     const verificationCode = ["Not a Number", "Not a Number", "Is a Number", "Is a Number"];
     let errorMsg = "";
 
     const statusList = list;
     const launchStatus = document.getElementById("launchStatus")
-
+    
     for (let verification of allInputsVerification) {
         if (verification === 'Empty') {
             errorMsg += "All fields are required!\n";
@@ -67,8 +67,9 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     }
 
     if (errorMsg === "") {
-        document.getElementById("pilotStatus").innerHTML = `Pilot, ${pilotNameInput.value}, is ready.`;
-        document.getElementById("copilotStatus").innerHTML = `Co-pilot, ${copilotNameInput.value}, is ready.`;
+        document.getElementById("pilotStatus").innerHTML = `Pilot, ${pilotNameInput}, is ready.`;
+        document.getElementById("copilotStatus").innerHTML = `Co-pilot, ${copilotNameInput}, is ready.`;
+        //console.log(Number(fuelLevel));
         if (Number(fuelLevel) < 10000 || Number(cargoLevel) > 10000) {
             launchStatus.innerHTML = `Shuttle Not Ready for Launch`;
             launchStatus.style.color = "red";
@@ -90,10 +91,8 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             launchStatus.innerHTML = `Shuttle is ready for launch`;
             launchStatus.style.color = "green";
         }
-        return true;
     } else {
         window.alert(errorMsg);
-        return false;
     }
 }
 
